@@ -4,87 +4,214 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#0b4aa2">
-<title>숭실대학교 디지털특성화대학 | 교육생 참여현황</title>
+<title>숭실대학교 디지털특성화대학 | 수료 절차 안내</title>
 <style>
-:root{--blue:#0b4aa2;--blue2:#173f78;--ink:#172033;--muted:#64748b;--line:#e5eaf1;--bg:#f4f7fb;--card:#fff;--ok:#15803d;--wait:#b45309;--danger:#be123c}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;line-height:1.55}
-.wrap{max-width:760px;margin:auto;padding:0 16px 52px}.hero{margin:0 -16px 20px;padding:30px 22px;color:#fff;background:linear-gradient(145deg,var(--blue2),var(--blue))}
-.brand{font-size:14px;font-weight:800;opacity:.92}h1{font-size:28px;line-height:1.25;margin:10px 0 8px;letter-spacing:-1px}.hero p{margin:0;color:#eaf2ff;font-size:15px}
-.panel,.card{background:#fff;border:1px solid var(--line);border-radius:20px;padding:19px;margin:13px 0;box-shadow:0 8px 24px rgba(23,32,51,.05)}
-.panel h2,.card h2{margin:0 0 7px;font-size:20px}.lead{font-size:14px;color:var(--muted);margin:0 0 14px}
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.field label{display:block;font-size:12px;font-weight:800;color:#475569;margin:0 0 5px}
-input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:13px;font-size:16px;outline:none;background:#fff}input:focus{border-color:#73a7ed;box-shadow:0 0 0 3px #e8f1ff}
-.actions{display:flex;gap:9px;margin-top:12px}.primary,.secondary,.survey{border:0;border-radius:12px;padding:13px 15px;font-weight:900;font-size:15px;cursor:pointer;text-decoration:none;text-align:center}
-.primary{background:var(--blue);color:#fff;flex:1}.secondary{background:#eef2f7;color:#334155}.progressbox{display:none;margin-top:16px;padding-top:16px;border-top:1px solid var(--line)}
-.progressline{display:flex;align-items:center;justify-content:space-between;gap:10px}.progressline strong{font-size:18px}.bar{height:10px;background:#e8edf4;border-radius:999px;overflow:hidden;margin-top:9px}.bar>div{height:100%;width:0;background:var(--blue);transition:width .3s}
-.section-title{font-size:19px;margin:24px 2px 10px}.cardtop{display:flex;gap:12px;align-items:flex-start}.num{width:42px;height:42px;border-radius:13px;background:#eaf2ff;color:var(--blue);font-weight:900;display:grid;place-items:center;flex:none}
-.card p{font-size:14px;color:var(--muted);margin:0}.status{display:inline-block;margin-top:10px;padding:5px 9px;border-radius:999px;background:#f1f5f9;color:#64748b;font-size:12px;font-weight:900}
-.status.ok{background:#e9f8ef;color:var(--ok)}.status.wait{background:#fff7ed;color:var(--wait)}.survey{display:block;margin-top:15px;background:var(--blue);color:#fff}
-.survey.done{background:#eef2f7;color:#475569}.hint{font-size:12px;color:#7c8799;margin-top:9px}.error{display:none;margin-top:10px;background:#fff1f2;border:1px solid #fecdd3;color:#9f1239;border-radius:12px;padding:11px;font-size:13px}
-.benefits{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}.benefits span{font-size:12px;background:#f8fafc;border:1px solid var(--line);border-radius:10px;padding:8px}
+:root{
+  --blue:#0b4aa2; --blue2:#173f78; --ink:#172033; --muted:#64748b;
+  --line:#e5eaf1; --bg:#f4f7fb; --card:#fff; --ok:#15803d; --wait:#b45309;
+}
+*{box-sizing:border-box}
+body{
+  margin:0;background:var(--bg);color:var(--ink);
+  font-family:system-ui,-apple-system,"Noto Sans KR","Malgun Gothic",sans-serif;
+  line-height:1.55
+}
+.wrap{max-width:760px;margin:auto;padding:0 16px 54px}
+.hero{
+  margin:0 -16px 20px;padding:30px 22px 28px;color:#fff;
+  background:linear-gradient(145deg,var(--blue2),var(--blue))
+}
+.brand{font-size:14px;font-weight:800;opacity:.92}
+h1{font-size:28px;line-height:1.25;margin:10px 0 8px;letter-spacing:-1px}
+.hero p{margin:0;color:#eaf2ff;font-size:15px}
+
+.panel,.card{
+  background:#fff;border:1px solid var(--line);border-radius:20px;padding:19px;
+  margin:13px 0;box-shadow:0 8px 24px rgba(23,32,51,.05)
+}
+.panel h2,.card h2{margin:0 0 7px;font-size:20px}
+.lead{font-size:14px;color:var(--muted);margin:0 0 14px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field label{display:block;font-size:12px;font-weight:800;color:#475569;margin:0 0 5px}
+input{
+  width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:13px;font-size:16px;
+  outline:none;background:#fff
+}
+input:focus{border-color:#73a7ed;box-shadow:0 0 0 3px #e8f1ff}
+.actions{display:flex;gap:9px;margin-top:12px}
+.primary,.secondary,.survey{
+  border:0;border-radius:12px;padding:13px 15px;font-weight:900;font-size:15px;
+  cursor:pointer;text-decoration:none;text-align:center
+}
+.primary{background:var(--blue);color:#fff;flex:1}
+.secondary{background:#eef2f7;color:#334155}
+.error{
+  display:none;margin-top:10px;background:#fff1f2;border:1px solid #fecdd3;
+  color:#9f1239;border-radius:12px;padding:11px;font-size:13px
+}
+
+.summary{
+  display:none;margin:15px 0 6px;background:#fff;border:1px solid #dbe5f2;
+  border-radius:18px;padding:17px
+}
+.summary-top{display:flex;align-items:flex-end;justify-content:space-between;gap:12px}
+.summary-title{font-size:14px;color:#64748b;font-weight:800}
+.summary strong{font-size:24px;letter-spacing:-.7px}
+.summary-pct{font-size:18px;font-weight:900;color:var(--blue)}
+.bar{height:11px;background:#e8edf4;border-radius:999px;overflow:hidden;margin-top:10px}
+.bar>div{height:100%;width:0;background:var(--blue);transition:width .3s}
+.summary-note{font-size:12px;color:#7c8799;margin-top:8px}
+
+.section-title{font-size:19px;margin:24px 2px 10px}
+.cardtop{display:flex;gap:12px;align-items:flex-start}
+.num{
+  width:42px;height:42px;border-radius:50%;background:#eaf2ff;color:var(--blue);
+  font-weight:900;display:grid;place-items:center;flex:none;font-size:18px
+}
+.card p{font-size:14px;color:var(--muted);margin:0}
+.status{
+  display:inline-block;margin-top:10px;padding:5px 9px;border-radius:999px;
+  background:#f1f5f9;color:#64748b;font-size:12px;font-weight:900
+}
+.status.ok{background:#e9f8ef;color:var(--ok)}
+.status.wait{background:#fff7ed;color:var(--wait)}
+.survey{display:block;margin-top:15px;background:var(--blue);color:#fff}
+.survey.done{background:#eef2f7;color:#475569}
+.hint{font-size:12px;color:#7c8799;margin-top:9px}
+.benefits{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:12px}
+.benefits span{
+  font-size:12px;background:#f8fafc;border:1px solid var(--line);
+  border-radius:10px;padding:8px
+}
 .footer{text-align:center;color:#7c8799;font-size:12px;margin-top:28px}
-@media(max-width:520px){h1{font-size:24px}.grid{grid-template-columns:1fr}.actions{flex-direction:column}.benefits{grid-template-columns:1fr}.panel,.card{padding:17px 15px}.survey{padding:15px}}
+
+@media(max-width:520px){
+  h1{font-size:24px}
+  .grid{grid-template-columns:1fr}
+  .actions{flex-direction:column}
+  .benefits{grid-template-columns:1fr}
+  .panel,.card{padding:17px 15px}
+  .survey{padding:15px}
+  .summary strong{font-size:22px}
+}
 </style>
 </head>
 <body>
 <div class="wrap">
+
 <header class="hero">
   <div class="brand">숭실대학교 디지털특성화대학</div>
-  <h1>나의 설문 참여현황</h1>
-  <p>본인 정보를 한 번 입력하면 완료한 설문을 확인할 수 있습니다.</p>
+  <h1>나의 수료 절차</h1>
+  <p>본인 정보를 입력하면 설문 참여현황을 한눈에 확인할 수 있습니다.</p>
 </header>
 
 <section class="panel">
   <h2>본인 확인</h2>
-  <p class="lead">교육 신청 시 사용한 정보를 입력해 주세요. 정보는 이 기기에만 임시 저장됩니다.</p>
+  <p class="lead">교육 신청 시 사용한 정보를 입력해 주세요. 입력한 정보는 이 기기에만 임시 저장됩니다.</p>
+
   <div class="grid">
-    <div class="field"><label for="name">성함</label><input id="name" autocomplete="name" placeholder="예: 홍길동"></div>
-    <div class="field"><label for="phone">휴대전화번호</label><input id="phone" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000"></div>
-    <div class="field" style="grid-column:1/-1"><label for="store">상호명</label><input id="store" placeholder="예: 길동상회"></div>
+    <div class="field">
+      <label for="name">성함</label>
+      <input id="name" autocomplete="name" placeholder="예: 홍길동">
+    </div>
+    <div class="field">
+      <label for="phone">휴대전화번호</label>
+      <input id="phone" inputmode="tel" autocomplete="tel" placeholder="010-0000-0000">
+    </div>
+    <div class="field" style="grid-column:1/-1">
+      <label for="store">상호명</label>
+      <input id="store" placeholder="예: 길동상회">
+    </div>
   </div>
+
   <div class="actions">
     <button class="primary" id="checkBtn">내 참여현황 확인</button>
     <button class="secondary" id="resetBtn">정보 지우기</button>
   </div>
+
   <div class="error" id="errorBox"></div>
-  <div class="progressbox" id="progressBox">
-    <div class="progressline"><strong id="progressText">0/4 완료</strong><span id="progressPct">0%</span></div>
-    <div class="bar"><div id="progressBar"></div></div>
-    <div class="hint">설문을 방금 제출하셨다면 ‘내 참여현황 확인’을 다시 눌러주세요.</div>
+</section>
+
+<section class="summary" id="summaryBox">
+  <div class="summary-top">
+    <div>
+      <div class="summary-title">현재 진행률</div>
+      <strong id="progressText">0 / 4 완료</strong>
+    </div>
+    <div class="summary-pct" id="progressPct">0%</div>
   </div>
+  <div class="bar"><div id="progressBar"></div></div>
+  <div class="summary-note">설문을 방금 제출하셨다면 ‘내 참여현황 확인’을 다시 눌러주세요.</div>
 </section>
 
 <h3 class="section-title">교육 과정</h3>
 
 <section class="card" data-key="pre">
-  <div class="cardtop"><div class="num">00</div><div><h2>📊 사전 디지털 역량평가</h2><p>교육 전 현재 디지털 역량을 확인합니다.</p><span class="status" id="status-pre">확인 전</span></div></div>
+  <div class="cardtop">
+    <div class="num">①</div>
+    <div>
+      <h2>📊 사전 디지털 역량평가</h2>
+      <p>교육 시작 전 현재 디지털 역량을 확인하는 조사입니다.</p>
+      <span class="status" id="status-pre">확인 전</span>
+    </div>
+  </div>
   <a class="survey" id="link-pre" target="_blank" rel="noopener">사전 역량평가 참여하기</a>
 </section>
 
-<section class="card" data-key="post">
-  <div class="cardtop"><div class="num">01</div><div><h2>📈 사후 디지털 역량평가</h2><p>교육 전과 동일한 문항으로 교육 후 변화 정도를 확인합니다.</p><span class="status" id="status-post">확인 전</span></div></div>
-  <a class="survey" id="link-post" target="_blank" rel="noopener">사후 역량평가 참여하기</a>
-</section>
-
 <section class="card" data-key="satisfaction">
-  <div class="cardtop"><div class="num">02</div><div><h2>📝 과목별 강의 만족도 조사</h2><p>과목별 강의 내용·강사·실무 활용도에 대한 의견을 남겨주세요.</p><span class="status" id="status-satisfaction">확인 전</span></div></div>
+  <div class="cardtop">
+    <div class="num">②</div>
+    <div>
+      <h2>📝 과목별 강의 만족도 조사</h2>
+      <p>과목별 강의 내용, 강사, 실무 활용도에 대한 의견을 남겨주세요.</p>
+      <span class="status" id="status-satisfaction">확인 전</span>
+    </div>
+  </div>
   <a class="survey" id="link-satisfaction" target="_blank" rel="noopener">강의 만족도 조사 참여하기</a>
 </section>
 
+<section class="card" data-key="post">
+  <div class="cardtop">
+    <div class="num">③</div>
+    <div>
+      <h2>📈 사후 디지털 역량평가</h2>
+      <p>사전평가와 동일한 문항으로 교육 후 디지털 역량의 변화를 확인합니다.</p>
+      <span class="status" id="status-post">확인 전</span>
+    </div>
+  </div>
+  <a class="survey" id="link-post" target="_blank" rel="noopener">사후 역량평가 참여하기</a>
+</section>
+
 <section class="card" data-key="benefit">
-  <div class="cardtop"><div class="num">03</div><div><h2>🎁 수료생 특별혜택 · 멘토링</h2><p>수료생 맞춤형 실습 지원과 1:1 전문가 멘토링 수요를 확인합니다.</p><span class="status" id="status-benefit">확인 전</span></div></div>
-  <div class="benefits"><span>🛒 국내 판로 확장</span><span>🖥️ 브랜드몰 제작</span><span>📣 홍보·마케팅</span><span>🤝 1:1 멘토링</span></div>
+  <div class="cardtop">
+    <div class="num">④</div>
+    <div>
+      <h2>🎁 수료생 특별혜택 · 멘토링</h2>
+      <p>최종 수료생을 위한 맞춤형 실습 지원과 1:1 전문가 멘토링 수요를 확인합니다.</p>
+      <span class="status" id="status-benefit">확인 전</span>
+    </div>
+  </div>
+
+  <div class="benefits">
+    <span>🛒 국내 판로 확장 지원</span>
+    <span>🖥️ 브랜드몰 제작 지원</span>
+    <span>📣 홍보·마케팅 지원</span>
+    <span>🤝 1:1 전문가 멘토링</span>
+  </div>
+
   <a class="survey" id="link-benefit" target="_blank" rel="noopener">특별혜택 · 멘토링 신청하기</a>
 </section>
 
-<div class="footer">숭실대학교 디지털특성화대학 운영사무국</div>
+<div class="footer">
+  숭실대학교 디지털특성화대학 운영사무국<br>
+  필수 설문을 모두 완료해 주세요.
+</div>
+
 </div>
 
 <script>
-// ① Apps Script를 웹앱으로 배포한 뒤 이 주소만 교체하세요.
 const API_URL = "https://script.google.com/macros/s/AKfycbzkMK3M1mzAbFbSDh35yW6OxBYwDsh7RxOxQl8sevHHBXxm1y7nfBZf_xwSYiHs5ckD/exec";
 
-// ② 실제 응답용 Google Form 링크
 const FORMS = {
   pre: "https://docs.google.com/forms/d/e/1FAIpQLSdI3prP1AOmMhy69aoHmU0KVoCKhcT6U0wSNhiVX2QVtkoTag/viewform?usp=header",
   post: "https://docs.google.com/forms/d/e/1FAIpQLScX7u39Z0EIfoWr33KURIf6OUeLYEH1vaWDbj6nx3W8tF5FlQ/viewform?usp=publish-editor",
@@ -92,46 +219,106 @@ const FORMS = {
   benefit: "https://docs.google.com/forms/d/e/1FAIpQLScQOwADYf42rwhSbaVArSNErzERMLd5C9-GtlCPqjS6y1fbGg/viewform?usp=header"
 };
 
-Object.entries(FORMS).forEach(([k,v]) => document.getElementById("link-"+k).href=v);
+Object.entries(FORMS).forEach(([k,v]) => {
+  const a = document.getElementById("link-"+k);
+  a.href = v;
+  a.dataset.original = a.textContent;
+});
 
-const els={name:document.getElementById("name"),phone:document.getElementById("phone"),store:document.getElementById("store")};
-const saved=JSON.parse(localStorage.getItem("ssuStudent")||"{}");
-els.name.value=saved.name||""; els.phone.value=saved.phone||""; els.store.value=saved.store||"";
+const els = {
+  name: document.getElementById("name"),
+  phone: document.getElementById("phone"),
+  store: document.getElementById("store")
+};
 
-function cleanPhone(v){ return (v||"").replace(/\D/g,""); }
-function save(){ localStorage.setItem("ssuStudent",JSON.stringify({name:els.name.value.trim(),phone:els.phone.value.trim(),store:els.store.value.trim()})); }
-function setStatus(key,done){
-  const s=document.getElementById("status-"+key), a=document.getElementById("link-"+key);
-  s.textContent=done?"✅ 완료":"⏳ 미완료"; s.className="status "+(done?"ok":"wait");
-  a.textContent=done?"완료됨 · 설문 다시 열기":a.dataset.original || a.textContent;
-  if(!a.dataset.original) a.dataset.original=a.textContent;
-  a.classList.toggle("done",done);
+const saved = JSON.parse(localStorage.getItem("ssuStudent") || "{}");
+els.name.value = saved.name || "";
+els.phone.value = saved.phone || "";
+els.store.value = saved.store || "";
+
+function cleanPhone(v){
+  return (v || "").replace(/\D/g,"");
 }
+
+function saveStudent(){
+  localStorage.setItem("ssuStudent", JSON.stringify({
+    name: els.name.value.trim(),
+    phone: els.phone.value.trim(),
+    store: els.store.value.trim()
+  }));
+}
+
+function setStatus(key, done){
+  const s = document.getElementById("status-"+key);
+  const a = document.getElementById("link-"+key);
+
+  s.textContent = done ? "✅ 완료" : "⏳ 미완료";
+  s.className = "status " + (done ? "ok" : "wait");
+
+  a.textContent = done ? "완료됨 · 설문 다시 열기" : a.dataset.original;
+  a.classList.toggle("done", done);
+}
+
 async function checkStatus(){
-  const error=document.getElementById("errorBox"); error.style.display="none";
-  const phone=cleanPhone(els.phone.value), name=els.name.value.trim(), store=els.store.value.trim();
-  if(!name || phone.length<10 || !store){ error.textContent="성함, 휴대전화번호, 상호명을 모두 입력해 주세요."; error.style.display="block"; return; }
-  save();
-  if(API_URL.startsWith("PASTE_")){
-    error.textContent="Apps Script API 주소를 아직 연결하지 않았습니다. 아래 Code.gs를 배포한 뒤 API_URL을 교체해 주세요.";
-    error.style.display="block"; return;
+  const error = document.getElementById("errorBox");
+  error.style.display = "none";
+
+  const phone = cleanPhone(els.phone.value);
+  const name = els.name.value.trim();
+  const store = els.store.value.trim();
+
+  if(!name || phone.length < 10 || !store){
+    error.textContent = "성함, 휴대전화번호, 상호명을 모두 입력해 주세요.";
+    error.style.display = "block";
+    return;
   }
-  const btn=document.getElementById("checkBtn"); btn.disabled=true; btn.textContent="확인 중...";
+
+  saveStudent();
+
+  const btn = document.getElementById("checkBtn");
+  btn.disabled = true;
+  btn.textContent = "확인 중...";
+
   try{
-    const u=new URL(API_URL); u.searchParams.set("phone",phone); u.searchParams.set("name",name); u.searchParams.set("store",store);
-    const r=await fetch(u.toString()); if(!r.ok) throw new Error("응답 조회 실패");
-    const data=await r.json(); if(!data.ok) throw new Error(data.message||"조회하지 못했습니다.");
-    const st=data.status||{}; ["pre","post","satisfaction","benefit"].forEach(k=>setStatus(k,!!st[k]));
-    const n=["pre","post","satisfaction","benefit"].filter(k=>st[k]).length, pct=Math.round(n/4*100);
-    document.getElementById("progressBox").style.display="block";
-    document.getElementById("progressText").textContent=`${n}/4 완료`;
-    document.getElementById("progressPct").textContent=`${pct}%`;
-    document.getElementById("progressBar").style.width=`${pct}%`;
-  }catch(e){ error.textContent="참여현황을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요."; error.style.display="block"; }
-  finally{ btn.disabled=false; btn.textContent="내 참여현황 확인"; }
+    const u = new URL(API_URL);
+    u.searchParams.set("phone", phone);
+    u.searchParams.set("name", name);
+    u.searchParams.set("store", store);
+
+    const r = await fetch(u.toString());
+    if(!r.ok) throw new Error("응답 조회 실패");
+
+    const data = await r.json();
+    if(!data.ok) throw new Error(data.message || "조회하지 못했습니다.");
+
+    const st = data.status || {};
+    ["pre","satisfaction","post","benefit"].forEach(k => setStatus(k, !!st[k]));
+
+    const n = ["pre","satisfaction","post","benefit"].filter(k => st[k]).length;
+    const pct = Math.round(n / 4 * 100);
+
+    document.getElementById("summaryBox").style.display = "block";
+    document.getElementById("progressText").textContent = `${n} / 4 완료`;
+    document.getElementById("progressPct").textContent = `${pct}%`;
+    document.getElementById("progressBar").style.width = `${pct}%`;
+
+  }catch(e){
+    error.textContent = "참여현황을 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.";
+    error.style.display = "block";
+  }finally{
+    btn.disabled = false;
+    btn.textContent = "내 참여현황 확인";
+  }
 }
-document.getElementById("checkBtn").addEventListener("click",checkStatus);
-document.getElementById("resetBtn").addEventListener("click",()=>{localStorage.removeItem("ssuStudent");Object.values(els).forEach(e=>e.value="");location.reload();});
+
+document.getElementById("checkBtn").addEventListener("click", checkStatus);
+
+document.getElementById("resetBtn").addEventListener("click", () => {
+  localStorage.removeItem("ssuStudent");
+  Object.values(els).forEach(e => e.value = "");
+  location.reload();
+});
 </script>
+
 </body>
 </html>
