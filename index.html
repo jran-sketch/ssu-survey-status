@@ -134,19 +134,19 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
           </div>
 
           <div class="row" id="sat-row-1">
-            <div class="item"><div class="ico">😊</div><div><strong>1회차 강의 만족도</strong><span>1회차 수업 종료 후 참여</span></div></div>
+            <div class="item"><div class="ico">😊</div><div><strong>1회차 강의 만족도 <em id="sat-date1" style="font-style:normal;color:#1458bd;font-size:13px;margin-left:6px;"></em></strong><span>1회차 수업 종료 후 참여</span></div></div>
             <div><span class="badge info" id="b-sat1">참여</span></div>
             <div class="detail" id="d-sat1">회차별 참여</div>
             <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
           </div>
           <div class="row" id="sat-row-2">
-            <div class="item"><div class="ico">😊</div><div><strong>2회차 강의 만족도</strong><span>2회차 수업 종료 후 참여</span></div></div>
+            <div class="item"><div class="ico">😊</div><div><strong>2회차 강의 만족도 <em id="sat-date2" style="font-style:normal;color:#1458bd;font-size:13px;margin-left:6px;"></em></strong><span>2회차 수업 종료 후 참여</span></div></div>
             <div><span class="badge info" id="b-sat2">참여</span></div>
             <div class="detail" id="d-sat2">회차별 참여</div>
             <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
           </div>
           <div class="row" id="sat-row-3">
-            <div class="item"><div class="ico">😊</div><div><strong>3회차 강의 만족도</strong><span>3회차 수업 종료 후 참여</span></div></div>
+            <div class="item"><div class="ico">😊</div><div><strong>3회차 강의 만족도 <em id="sat-date3" style="font-style:normal;color:#1458bd;font-size:13px;margin-left:6px;"></em></strong><span>3회차 수업 종료 후 참여</span></div></div>
             <div><span class="badge info" id="b-sat3">참여</span></div>
             <div class="detail" id="d-sat3">회차별 참여</div>
             <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
@@ -209,6 +209,26 @@ function fmt(v, unit){
   return n>0 ? `${n}${unit}` : String(v);
 }
 
+
+
+function getCourseDatesForDisplay(course){
+  const s=String(course||"").replace(/\s+/g,"");
+  if(s.includes("9월") && s.includes("기초")) return ["9월 15일","9월 22일","9월 29일"];
+  if(s.includes("9월") && s.includes("글로벌")) return ["9월 7일","9월 14일","9월 29일"];
+  if(s.includes("10월") && s.includes("기초")) return ["10월 15일","10월 22일","10월 29일"];
+  if(s.includes("10월") && s.includes("글로벌")) return ["10월 19일","10월 26일","10월 29일"];
+  if(s.includes("강원")) return ["10월 14일","10월 21일","10월 28일"];
+  if(s.includes("8월") && s.includes("기초")) return ["8월 14일","8월 21일","8월 28일"];
+  return ["","",""];
+}
+
+function renderSatisfactionDates(course){
+  const dates=getCourseDatesForDisplay(course);
+  [1,2,3].forEach((i,idx)=>{
+    const el=$("sat-date"+i);
+    if(el) el.textContent=dates[idx] ? `· ${dates[idx]}` : "";
+  });
+}
 
 async function loadSatisfactionStatus(phone, primaryCourse){
   const isAugust=/8월/.test(primaryCourse);
@@ -306,6 +326,7 @@ async function check(){
     const primaryCourse=courseList[0]||"과정 정보 확인 필요";
     const auditCourses=courseList.slice(1);
     $("courseName").innerHTML=`${primaryCourse}<span class="role primary">수료 대상</span>`;
+    renderSatisfactionDates(primaryCourse);
     $("auditCourses").innerHTML=auditCourses.map(c=>`<div class="course-line">${c}<span class="role audit">청강</span></div>`).join("");
     $("termClass").textContent=[s.term,s.className].filter(Boolean).join(" / ")||"-";
     $("completionText").textContent=s.completion||"미정";
