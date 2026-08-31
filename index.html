@@ -28,7 +28,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
 .primary{background:linear-gradient(135deg,#124da8,#083c86);color:#fff}
 .error{display:none;margin-top:12px;background:var(--dangerbg);color:var(--danger);border:1px solid #fecdd3;border-radius:10px;padding:11px;font-size:13px}
 .info-row{padding:10px 0;border-bottom:1px solid #eef1f5}.info-row:last-child{border-bottom:0}
-.info-label{font-size:12px;color:var(--muted);margin-bottom:3px}.info-value{font-size:15px;font-weight:800}
+.info-label{font-size:12px;color:var(--muted);margin-bottom:3px}.info-value{font-size:15px;font-weight:800}.course-line{margin-top:6px}.role{display:inline-block;margin-left:6px;padding:2px 7px;border-radius:999px;font-size:11px;font-weight:900}.role.primary{background:#eaf2ff;color:#1458bd}.role.audit{background:#f1f5f9;color:#64748b}
 .notice{background:#f3f7fd;border-radius:14px;padding:14px;font-size:13px;color:#40516c}.notice strong{display:block;color:#174a91;margin-bottom:7px}
 .maincard{padding:22px}.progress-head{display:flex;align-items:end;justify-content:space-between;gap:12px}
 .progress-head h2{margin:0;font-size:22px}.pct{font-size:34px;font-weight:900;color:#1560d0}.count{color:var(--muted);font-size:14px;margin-left:8px}
@@ -58,7 +58,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
 <body>
 <div class="shell">
   <div class="topbar">
-    <img class="logo" src="soongsil-logo.jpg" alt="숭실대학교">
+    <div class="brandWrap"><img class="logo" src="soongsil-logo.jpg" alt="숭실대학교" onerror="this.style.display='none';this.nextElementSibling.style.display='block'"><div class="logoFallback" style="display:none;font-weight:900;color:#0c2d5a;font-size:22px;">숭실대학교</div></div>
     <h1>나의 진행현황</h1>
   </div>
 
@@ -76,7 +76,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
       <section class="panel hidden" id="studentPanel">
         <h2>나의 과정 정보</h2>
         <div class="info-row"><div class="info-label">성함</div><div class="info-value" id="studentName">-</div></div>
-        <div class="info-row"><div class="info-label">과정</div><div class="info-value" id="courseName">-</div></div>
+        <div class="info-row"><div class="info-label">과정</div><div class="info-value" id="courseName">-</div><div id="auditCourses"></div></div>
         <div class="info-row"><div class="info-label">학기 / 분반</div><div class="info-value" id="termClass">-</div></div>
         <div class="info-row"><div class="info-label">최종 수료여부</div><div class="info-value" id="completionText">확인 중</div></div>
       </section>
@@ -133,11 +133,23 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
             <div><a class="action primary-link" id="preLink" target="_blank" rel="noopener">참여하기</a></div>
           </div>
 
-          <div class="row">
-            <div class="item"><div class="ico">😊</div><div><strong>회차별 강의 만족도</strong><span>수업 종료 후 회차별 참여</span></div></div>
-            <div><span class="badge info" id="b-sat">참여</span></div>
-            <div class="detail" id="d-sat">수업 종료 후 참여</div>
-            <div><a class="action primary-link" id="satLink" target="_blank" rel="noopener">참여하기</a></div>
+          <div class="row" id="sat-row-1">
+            <div class="item"><div class="ico">😊</div><div><strong>1회차 강의 만족도</strong><span>1회차 수업 종료 후 참여</span></div></div>
+            <div><span class="badge info" id="b-sat1">참여</span></div>
+            <div class="detail" id="d-sat1">회차별 참여</div>
+            <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
+          </div>
+          <div class="row" id="sat-row-2">
+            <div class="item"><div class="ico">😊</div><div><strong>2회차 강의 만족도</strong><span>2회차 수업 종료 후 참여</span></div></div>
+            <div><span class="badge info" id="b-sat2">참여</span></div>
+            <div class="detail" id="d-sat2">회차별 참여</div>
+            <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
+          </div>
+          <div class="row" id="sat-row-3">
+            <div class="item"><div class="ico">😊</div><div><strong>3회차 강의 만족도</strong><span>3회차 수업 종료 후 참여</span></div></div>
+            <div><span class="badge info" id="b-sat3">참여</span></div>
+            <div class="detail" id="d-sat3">회차별 참여</div>
+            <div><a class="action primary-link sat-link" target="_blank" rel="noopener">참여하기</a></div>
           </div>
 
           <div class="row">
@@ -147,7 +159,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
             <div><a class="action primary-link" id="postLink" target="_blank" rel="noopener">참여하기</a></div>
           </div>
         </div>
-        <div class="foot">※ 수료여부는 명단 시트의 현재 값을 그대로 표시합니다. 만족도 완료 여부는 다음 단계에서 만족도 응답 시트와 연결하면 자동 표시할 수 있습니다.</div>
+        <div class="foot">※ 오프라인 교육은 16시간 이상이면 완료로 표시합니다. 8월 과정 만족도는 당시 휴대전화번호를 수집하지 않아 개인별 완료 여부를 자동 확인할 수 없습니다. 복수 수강자는 신청수업 목록의 첫 번째 과정을 수료 대상, 이후 과정은 청강으로 표시합니다.</div>
       </div>
     </main>
   </div>
@@ -163,7 +175,7 @@ const LINKS={
 };
 document.getElementById("preLink").href=LINKS.pre;
 document.getElementById("postLink").href=LINKS.post;
-document.getElementById("satLink").href=LINKS.satisfaction;
+document.querySelectorAll(".sat-link").forEach(a=>a.href=LINKS.satisfaction);
 document.getElementById("scheduleLink").href=LINKS.schedule;
 
 const $=id=>document.getElementById(id);
@@ -210,27 +222,43 @@ async function check(){
 
     const s=data.student||{}, st=data.status||{};
     $("studentName").textContent=s.name||"-";
-    $("courseName").textContent=s.course||"과정 정보 확인 필요";
+    const courseList=String(s.course||"").split(/[,\n]/).map(v=>v.trim()).filter(Boolean);
+    const primaryCourse=courseList[0]||"과정 정보 확인 필요";
+    const auditCourses=courseList.slice(1);
+    $("courseName").innerHTML=`${primaryCourse}<span class="role primary">수료 대상</span>`;
+    $("auditCourses").innerHTML=auditCourses.map(c=>`<div class="course-line">${c}<span class="role audit">청강</span></div>`).join("");
     $("termClass").textContent=[s.term,s.className].filter(Boolean).join(" / ")||"-";
     $("completionText").textContent=s.completion||"미정";
 
     const od=onlineDone(s.onlineEducation);
     const ad=aiDone(s.aiEducation);
     const offlineHours=numeric(s.offlineHours);
-    const offd=offlineHours>0;
+    const offd=offlineHours>=16;
     setBadge("b-online",od); $("d-online").innerHTML=od?`<b>${fmt(s.onlineEducation,"시간")}</b>`:fmt(s.onlineEducation,"시간");
     setBadge("b-ai",ad); $("d-ai").innerHTML=ad?`<b>${fmt(s.aiEducation,"개")}</b>`:fmt(s.aiEducation,"개");
-    setBadge("b-offline",offd, offlineHours>0?"진행중":"미참여"); $("d-offline").innerHTML=offlineHours>0?`<b>${offlineHours}시간 이수</b>`:"0시간";
+    setBadge("b-offline",offd, offlineHours>0?"진행중":"미참여"); $("d-offline").innerHTML=offlineHours>0?`<b>${offlineHours}시간 이수</b> / 16시간 기준`:"0시간 / 16시간 기준";
     setBadge("b-pre",!!st.pre); $("d-pre").textContent=st.pre?"참여 완료":"미참여";
     setBadge("b-post",!!st.post); $("d-post").textContent=st.post?"참여 완료":"미참여";
 
-    // satisfaction is linked, but not counted until its response API is connected.
-    $("b-sat").className="badge info"; $("b-sat").textContent="참여";
-    $("d-sat").textContent="회차별 참여";
+    // 만족도: 항상 3회차 표시.
+    // 8월 과정은 당시 휴대전화번호를 받지 않아 개인별 완료 여부 자동확인이 불가능하므로 진행률에서 제외.
+    const isAugust=/8월/.test(primaryCourse) || /8월/.test(String(s.term||""));
+    [1,2,3].forEach(i=>{
+      const b=$("b-sat"+i), d=$("d-sat"+i);
+      if(isAugust){
+        b.className="badge info"; b.textContent="확인 불가";
+        d.textContent="8월 과정은 개인별 완료 확인 불가";
+      }else{
+        b.className="badge wait"; b.textContent="참여";
+        d.textContent="수업 종료 후 참여";
+      }
+    });
 
+    // 현재 자동판정 가능한 항목만 전체 진행률에 반영.
+    // 8월 만족도는 개인 식별 불가로 제외. 향후 만족도 API 연결 후 3회차를 각각 계산 가능.
     const checks=[od,ad,offd,!!st.pre,!!st.post];
     const completed=checks.filter(Boolean).length;
-    const total=5;
+    const total=checks.length;
     const pct=Math.round(completed/total*100);
     $("pct").textContent=pct+"%"; $("count").textContent=`${completed} / ${total} 확인`;
     $("bar").style.width=pct+"%";
