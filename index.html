@@ -159,7 +159,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
             <div><a class="action primary-link" id="postLink" target="_blank" rel="noopener">참여하기</a></div>
           </div>
         </div>
-        <div class="foot">※ 오프라인 교육은 총 20시간 과정이며, 16시간 이상 이수하면 완료로 표시합니다. 8월 과정 만족도는 당시 휴대전화번호를 수집하지 않아 개인별 완료 여부를 자동 확인할 수 없습니다. 복수 수강자는 신청수업 목록의 첫 번째 과정을 수료 대상, 이후 과정은 청강으로 표시합니다.</div>
+        <div class="foot">※ 오프라인 교육은 총 20시간 과정이며, 16시간 이상 이수하면 완료로 표시합니다. 9월 이후 만족도는 휴대전화번호와 교육일을 기준으로 회차별 완료 여부를 자동 확인하며, 3회차는 강의 만족도와 과정 전체 만족도를 모두 완료해야 완료로 표시합니다. 8월 만족도는 휴대전화번호 미수집으로 개인별 완료 여부를 확인할 수 없습니다. 복수 수강자는 첫 번째 과정을 수료 대상, 이후 과정은 청강으로 표시합니다.</div>
       </div>
     </main>
   </div>
@@ -167,6 +167,7 @@ button{width:100%;margin-top:12px;border:0;border-radius:12px;padding:14px;font-
 
 <script>
 const API_URL="https://script.google.com/macros/s/AKfycbzkMK3M1mzAbFbSDh35yW6OxBYwDsh7RxOxQl8sevHHBXxm1y7nfBZf_xwSYiHs5ckD/exec";
+const SAT_API_URL="https://script.google.com/macros/s/AKfycbyYHpoqe_iT7gy9v8o6RzdMPSANa6bHNDlHY_ucMmctzmYaW4H3FCREVISFvjZHLave/exec";
 const LINKS={
   pre:"https://docs.google.com/forms/d/e/1FAIpQLSdI3prP1AOmMhy69aoHmU0KVoCKhcT6U0wSNhiVX2QVtkoTag/viewform?usp=header",
   post:"https://docs.google.com/forms/d/e/1FAIpQLSc_T0bmEl36c9ofweHAdoBdk_jS4c_sgBUnDecJxTROcS0N0A/viewform?usp=header",
@@ -208,6 +209,85 @@ function fmt(v, unit){
   return n>0 ? `${n}${unit}` : String(v);
 }
 
+
+async function loadSatisfactionStatus(phone, primaryCourse){
+  const isAugust=/8월/.test(primaryCourse);
+  const satButtons=[...document.querySelectorAll(".sat-link")];
+
+  if(isAugust){
+    [1,2,3].forEach((i,idx)=>{
+      const b=$("b-sat"+i), d=$("d-sat"+i), a=satButtons[idx];
+      b.className="badge info";
+      b.textContent="확인 불가";
+      d.textContent="8월 과정은 개인별 완료 확인 불가";
+      if(a){
+        a.textContent="참여하기";
+        a.classList.remove("disabled");
+        a.classList.add("primary-link");
+        a.href=LINKS.satisfaction;
+      }
+    });
+    return {verifiable:false, sessions:[null,null,null]};
+  }
+
+  try{
+    const url=`${SAT_API_URL}?phone=${encodeURIComponent(phone)}&course=${encodeURIComponent(primaryCourse)}&t=${Date.now()}`;
+    const r=await fetch(url,{cache:"no-store"});
+    if(!r.ok) throw new Error("만족도 API 오류");
+    const data=await r.json();
+    if(!data.ok) throw new Error(data.message||"만족도 조회 실패");
+
+    const sessions=Array.isArray(data.sessions)?data.sessions:[false,false,false];
+
+    [1,2,3].forEach((i,idx)=>{
+      const done=!!sessions[idx];
+      const b=$("b-sat"+i), d=$("d-sat"+i), a=satButtons[idx];
+
+      b.className="badge "+(done?"ok":"wait");
+      b.textContent=done?"완료":"미완료";
+
+      if(i===3){
+        d.textContent=done
+          ? "3회차 + 과정 전체 만족도 완료"
+          : "3회차 + 과정 전체 만족도 참여 필요";
+      }else{
+        d.textContent=done?"참여 완료":"미참여";
+      }
+
+      if(a){
+        if(done){
+          a.textContent="완료";
+          a.classList.remove("primary-link");
+          a.classList.add("disabled");
+          a.removeAttribute("href");
+        }else{
+          a.textContent="참여하기";
+          a.classList.remove("disabled");
+          a.classList.add("primary-link");
+          a.href=LINKS.satisfaction;
+        }
+      }
+    });
+
+    return {verifiable:true, sessions:sessions};
+  }catch(err){
+    console.error(err);
+    [1,2,3].forEach((i,idx)=>{
+      const b=$("b-sat"+i), d=$("d-sat"+i), a=satButtons[idx];
+      b.className="badge info";
+      b.textContent="확인 지연";
+      d.textContent="잠시 후 다시 조회해 주세요";
+      if(a){
+        a.textContent="참여하기";
+        a.classList.remove("disabled");
+        a.classList.add("primary-link");
+        a.href=LINKS.satisfaction;
+      }
+    });
+    return {verifiable:false, sessions:[null,null,null], error:true};
+  }
+}
+
 async function check(){
   const phone=normalize($("phone").value);
   $("error").style.display="none";
@@ -240,27 +320,21 @@ async function check(){
     setBadge("b-pre",!!st.pre); $("d-pre").textContent=st.pre?"참여 완료":"미참여";
     setBadge("b-post",!!st.post); $("d-post").textContent=st.post?"참여 완료":"미참여";
 
-    // 만족도: 항상 3회차 표시.
-    // 8월 과정은 당시 휴대전화번호를 받지 않아 개인별 완료 여부 자동확인이 불가능하므로 진행률에서 제외.
-    const isAugust=/8월/.test(primaryCourse) || /8월/.test(String(s.term||""));
-    [1,2,3].forEach(i=>{
-      const b=$("b-sat"+i), d=$("d-sat"+i);
-      if(isAugust){
-        b.className="badge info"; b.textContent="확인 불가";
-        d.textContent="8월 과정은 개인별 완료 확인 불가";
-      }else{
-        b.className="badge wait"; b.textContent="참여";
-        d.textContent="수업 종료 후 참여";
-      }
-    });
+    // 만족도는 수료 대상(첫 번째) 과정만 개인별 완료 여부를 확인합니다.
+    const satStatus=await loadSatisfactionStatus(phone, primaryCourse);
 
-    // 현재 자동판정 가능한 항목만 전체 진행률에 반영.
-    // 8월 만족도는 개인 식별 불가로 제외. 향후 만족도 API 연결 후 3회차를 각각 계산 가능.
+    // 기본 수료 준비 항목 5개 + (9월 이후) 만족도 3개를 전체 진행률에 반영합니다.
+    // 8월은 휴대전화 미수집으로 만족도 3개를 진행률에서 제외합니다.
     const checks=[od,ad,offd,!!st.pre,!!st.post];
+    if(satStatus.verifiable){
+      checks.push(...satStatus.sessions.map(Boolean));
+    }
+
     const completed=checks.filter(Boolean).length;
     const total=checks.length;
     const pct=Math.round(completed/total*100);
-    $("pct").textContent=pct+"%"; $("count").textContent=`${completed} / ${total} 확인`;
+    $("pct").textContent=pct+"%";
+    $("count").textContent=`${completed} / ${total} 완료`;
     $("bar").style.width=pct+"%";
     $("emptyState").classList.add("hidden"); $("result").classList.remove("hidden"); $("studentPanel").classList.remove("hidden");
   }catch(e){
