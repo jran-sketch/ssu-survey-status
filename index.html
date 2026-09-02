@@ -222,6 +222,24 @@ function getCourseDatesForDisplay(course){
   return ["","",""];
 }
 
+function getCourseDatesISO(course){
+  const s=String(course||"").replace(/\s+/g,"");
+  if(s.includes("9월") && s.includes("기초")) return ["2026-09-15","2026-09-22","2026-09-29"];
+  if(s.includes("9월") && s.includes("글로벌")) return ["2026-09-07","2026-09-14","2026-09-29"];
+  if(s.includes("10월") && s.includes("기초")) return ["2026-10-15","2026-10-22","2026-10-29"];
+  if(s.includes("10월") && s.includes("글로벌")) return ["2026-10-19","2026-10-26","2026-10-29"];
+  if(s.includes("강원")) return ["2026-10-14","2026-10-21","2026-10-28"];
+  if(s.includes("8월") && s.includes("기초")) return ["2026-08-14","2026-08-21","2026-08-28"];
+  return ["","",""];
+}
+
+function satisfactionDeepLink(course, date){
+  const q=new URLSearchParams();
+  if(course) q.set("course",course);
+  if(date) q.set("date",date);
+  return LINKS.satisfaction + "?" + q.toString();
+}
+
 function renderSatisfactionDates(course){
   const dates=getCourseDatesForDisplay(course);
   [1,2,3].forEach((i,idx)=>{
@@ -233,6 +251,12 @@ function renderSatisfactionDates(course){
 async function loadSatisfactionStatus(phone, primaryCourse){
   const isAugust=/8월/.test(primaryCourse);
   const satButtons=[...document.querySelectorAll(".sat-link")];
+  const isoDates=getCourseDatesISO(primaryCourse);
+
+  // 회차별 참여하기 버튼은 해당 과정/교육일로 바로 진입
+  satButtons.forEach((a,idx)=>{
+    a.href=satisfactionDeepLink(primaryCourse, isoDates[idx]||"");
+  });
 
   if(isAugust){
     [1,2,3].forEach((i,idx)=>{
@@ -244,7 +268,7 @@ async function loadSatisfactionStatus(phone, primaryCourse){
         a.textContent="참여하기";
         a.classList.remove("disabled");
         a.classList.add("primary-link");
-        a.href=LINKS.satisfaction;
+        a.href=satisfactionDeepLink(primaryCourse, isoDates[idx]||"");
       }
     });
     return {verifiable:false, sessions:[null,null,null]};
@@ -284,7 +308,7 @@ async function loadSatisfactionStatus(phone, primaryCourse){
           a.textContent="참여하기";
           a.classList.remove("disabled");
           a.classList.add("primary-link");
-          a.href=LINKS.satisfaction;
+          a.href=satisfactionDeepLink(primaryCourse, isoDates[idx]||"");
         }
       }
     });
@@ -301,7 +325,7 @@ async function loadSatisfactionStatus(phone, primaryCourse){
         a.textContent="참여하기";
         a.classList.remove("disabled");
         a.classList.add("primary-link");
-        a.href=LINKS.satisfaction;
+        a.href=satisfactionDeepLink(primaryCourse, isoDates[idx]||"");
       }
     });
     return {verifiable:false, sessions:[null,null,null], error:true};
